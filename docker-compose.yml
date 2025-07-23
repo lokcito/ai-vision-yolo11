@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  yolox:
+    build:
+      context: .              # Usa el Dockerfile en el directorio actual
+    container_name: yolo_container
+    network_mode: "none"  # ← SIN INTERNET AL EJECUTAR
+    volumes:
+      - .:/app                # Opcional: monta tu código local para desarrollo
+    working_dir: /app
+    environment:
+      - DEBUG=TRUE
+      - YOLO_CONFIG_DIR=/tmp/Ultralytics
+    stdin_open: true          # Para bash interactivo
+    tty: true                 # Necesario para mantener sesión bash
