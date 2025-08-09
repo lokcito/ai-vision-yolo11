@@ -1,4 +1,5 @@
 runs
+models/sam_b.pt
 entorno
 venv
 venvo
