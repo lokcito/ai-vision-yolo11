@@ -17,11 +17,13 @@ if DOCKER:
     config_dir = Path("/tmp/Ultralytics")
     model_path = Path("/app/models") / MODEL_NAME
     data_path = Path("/app/datx/data.yaml")
+    project_path = ""
     run_path = Path("/app/runs")
 else:
     config_dir = BASE_PATH / "config"
     model_path = BASE_PATH / "models" / MODEL_NAME
     data_path = "/Volumes/EXTRX/dev/python/yola/dataset_apples/data.yaml"
+    project_path = BASE_PATH / "project"
     run_path = BASE_PATH / "runs"
 
 # === SET ENVIRONMENT ===
@@ -45,7 +47,7 @@ results = model.train(
     data=str(data_path),
     epochs=EPOCHS,
     imgsz=IMAGE_SIZE,
-    project=str(run_path),
+    project=str(project_path),
     name=PROJECT_NAME,
     verbose=True,
     # val=True,              # validación por epoch
