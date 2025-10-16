@@ -7,12 +7,27 @@ from typing import Final
 DOCKER: Final[bool] = False
 MODEL_NAME: Final[str] = "yolo11n.pt"
 PROJECT_NAME: Final[str] = "yolo11-apple"
-EPOCHS: Final[int] = 1
+EPOCHS: Final[int] = 50
 IMAGE_SIZE: Final[int] = 640
 
-# === RUTAS ===
-BASE_PATH = Path(__file__).resolve().parent.parent
+def get_project_root(marker: str = ".git") -> Path:
+    """
+    Devuelve el directorio raíz del proyecto buscando un marcador distintivo 
+    (por defecto .git, pero puede ser pyproject.toml, requirements.txt, etc.)
+    """
+    current = Path(__file__).resolve()
+    for parent in current.parents:
+        if (parent / marker).exists():
+            return parent
+    # Si no encuentra el marcador, usa la carpeta del archivo actual
+    return current.parent
 
+
+
+
+# === RUTAS ===
+BASE_PATH = get_project_root()
+print(f"BASE_PATH: {BASE_PATH}")
 if DOCKER:
     config_dir = Path("/tmp/Ultralytics")
     model_path = Path("/app/models") / MODEL_NAME
@@ -22,7 +37,7 @@ if DOCKER:
 else:
     config_dir = BASE_PATH / "config"
     model_path = BASE_PATH / "models" / MODEL_NAME
-    data_path = "/Volumes/EXTRX/dev/python/yola/dataset_apples/data.yaml"
+    data_path = "/Volumes/EXTRX/dev/python/yola/ai-labelstudio-etl-yolo/yolo_dataset/data.yaml"
     project_path = BASE_PATH / "project"
     run_path = BASE_PATH / "runs"
 
