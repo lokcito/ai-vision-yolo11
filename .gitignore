@@ -2,6 +2,8 @@ runs
 models/sam_b.pt
 models/sam_c.pt
 models/best_06.pt
+models/yolo11m.pt
+models/yolo11n.pt
 models/best.pt
 entorno
 outputs

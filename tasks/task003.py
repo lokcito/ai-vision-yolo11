@@ -2,7 +2,7 @@ from pathlib import Path
 from ultralytics import YOLO  # Para Ultralytics YOLOv8 y superiores
 
 BASE_PATH = Path(__file__).resolve().parent.parent
-MODEL_NAME = "mangos_01.pt"
+MODEL_NAME = "best.pt"
 model_path = BASE_PATH / "models" / MODEL_NAME
 
 model = YOLO(model_path)
